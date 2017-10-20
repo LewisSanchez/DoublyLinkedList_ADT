@@ -2,12 +2,12 @@
 #define NODE_H
 
 template <typename T>
-class DoubleLinkedList;
+class DoublyLinkedList;
 
 template <typename T>
 class Node
 {
-	friend class DoubleLinkedList<T>;
+	friend class DoublyLinkedList<T>;
 
 	public:
 		Node();

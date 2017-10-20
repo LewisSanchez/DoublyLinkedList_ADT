@@ -1,5 +1,5 @@
-#ifndef DOUBLELINKEDLIST_H
-#define DOUBLELINKEDLIST_H
+#ifndef DOUBLYLINKEDLIST_H
+#define DOUBLYLINKEDLIST_H
 
 #include <iostream>
 using std::cout;
@@ -169,8 +169,8 @@ template <typename T>
 void DoublyLinkedList<T>::Extract(T data)
 {
 	Node<T> * travel = m_head;
-	Node<T> * previous = nullptr;
-	Node<T> * next = nullptr;
+	Node<T> * travels_previous = nullptr;
+	Node<T> * travels_next = nullptr;
 
 	while (travel != nullptr && travel->m_data != data)
 		travel = travel->m_next;
@@ -184,22 +184,22 @@ void DoublyLinkedList<T>::Extract(T data)
 		}
 		else if (travel == m_head)
 		{
-			next = travel->m_next;
-			next->m_previous = nullptr;
-			m_head = next;
+			travels_next = travel->m_next;
+			travels_next->m_previous = nullptr;
+			m_head = travels_next;
 		}
 		else if (travel == m_tail)
 		{
-			previous = travel->m_previous;
-			previous->m_next = nullptr;
-			m_tail = previous;
+			travels_previous = travel->m_previous;
+			travels_previous->m_next = nullptr;
+			m_tail = travels_previous;
 		}
 		else if (travel != nullptr)
 		{
-			previous = travel->m_previous;
-			next = travel->m_next;
-			previous->m_next = next;
-			next->m_previous = previous;
+			travels_previous = travel->m_previous;
+			travels_next = travel->m_next;
+			travels_previous->m_next = travels_next;
+			travels_next->m_previous = travels_previous;
 		}
 		delete travel;
 	}
@@ -208,7 +208,7 @@ void DoublyLinkedList<T>::Extract(T data)
 }
 
 template <typename T>
-void DoublyLinkedList<T>::InsertAfter(T data, T target)
+void DoublyLinkedList<T>::InsertAfter(T target, T data)
 {
 	Node<T> * travel = m_head;
 
@@ -235,7 +235,7 @@ void DoublyLinkedList<T>::InsertAfter(T data, T target)
 }
 
 template <typename T>
-void DoublyLinkedList<T>::InsertBefore(T data, T target)
+void DoublyLinkedList<T>::InsertBefore(T target, T data)
 {
 	Node<T> * travel = m_tail;
 
