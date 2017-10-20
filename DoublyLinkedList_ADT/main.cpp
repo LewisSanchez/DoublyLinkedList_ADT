@@ -28,6 +28,9 @@ void TestingPurge();
 void TestingExtract();
 void TestingInsertAfter();
 void TestingInsertBefore();
+void TestingInsertAfterAndExpectingException();
+void TestingINsertBeforeAndExpectingException();
+void TestingConst();
 
 int main()
 {
@@ -55,6 +58,9 @@ void RunTests()
 	TestingExtract();
 	TestingInsertAfter();
 	TestingInsertBefore();
+	TestingInsertAfterAndExpectingException();
+	TestingINsertBeforeAndExpectingException();
+	TestingConst();
 }
 
 void PrintTestHeader(const char * testName)
@@ -303,6 +309,71 @@ void TestingInsertBefore()
 		list_1.InsertBefore(5, 2);
 
 		assert(list_1.First() == 2);
+		PrintTestPass(test);
+	}
+	catch (const char * message)
+	{
+		PrintTestFail(test, message);
+	}
+}
+
+void TestingInsertAfterAndExpectingException()
+{
+	const char * test = "Insert After: Expecting an exception";
+	PrintTestHeader(test);
+
+	try
+	{
+		DoublyLinkedList<int> list_1;
+		list_1.Append(5);
+
+		// Insert 8 after 2 (2 is not in list)
+		list_1.InsertAfter(2, 8);
+	}
+	catch (const char * message)
+	{
+		std::cerr << message << std::endl;
+		PrintTestPass(test);
+	}
+}
+
+void TestingINsertBeforeAndExpectingException()
+{
+	const char * test = "Insert Before: Expecting an exception";
+	PrintTestHeader(test);
+
+	try
+	{
+		DoublyLinkedList<int> list_1;
+		list_1.Append(5);
+
+		// Insert 2 before 9 (9 is not in list)
+		list_1.InsertBefore(9, 2);
+	}
+	catch (const char * message)
+	{
+		std::cerr << message << std::endl;
+		PrintTestPass(test);
+	}
+}
+
+void TestingConst()
+{
+	const char * test = "Testing const";
+	PrintTestHeader(test);
+
+	try
+	{
+		DoublyLinkedList<int> list_1;
+		list_1.Append(3);
+		list_1.Append(5);
+		list_1.Append(7);
+
+		const DoublyLinkedList<int> list_2(list_1);
+		assert(list_2.First() == 3);
+		assert(list_2.Last() == 7);
+		assert(list_2.isEmpty() == false);
+
 		PrintTestPass(test);
 	}
 	catch (const char * message)

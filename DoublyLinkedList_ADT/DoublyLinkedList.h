@@ -99,7 +99,7 @@ template <typename T>
 const T & DoublyLinkedList<T>::First() const
 {
 	if (m_head == nullptr)
-		throw "List is empty - Cannot access First!";
+		throw "Error: List is empty - Cannot access First!";
 
 	return m_head->m_data;
 }
@@ -108,7 +108,7 @@ template <typename T>
 const T & DoublyLinkedList<T>::Last() const
 {
 	if (m_head == nullptr)
-		throw "List is empty - Cannot access Last!";
+		throw "Error: List is empty - Cannot access Last!";
 
 	return m_tail->m_data;
 }
@@ -204,7 +204,7 @@ void DoublyLinkedList<T>::Extract(T data)
 		delete travel;
 	}
 	else
-		throw "Target to extract was not found!";
+		throw "Error: Target to extract was not found!";
 }
 
 template <typename T>
@@ -231,7 +231,7 @@ void DoublyLinkedList<T>::InsertAfter(T target, T data)
 		}
 	}
 	else
-		throw "Target to insert after was not found!";
+		throw "Error: Target to insert after was not found!";
 }
 
 template <typename T>
@@ -258,7 +258,7 @@ void DoublyLinkedList<T>::InsertBefore(T target, T data)
 		}
 	}
 	else
-		throw "Target to insert before was not found!";
+		throw "Error: Target to insert before was not found!";
 }
 
 template <typename T>
